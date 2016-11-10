@@ -6,8 +6,8 @@ Object representing a Grid of a Scene in the TRPG.
 '''
 import pyglet
 from pyglet.gl import *
-from tile import Tile
 import random
+from tile import Tile
 from atlas import Atlas
 
 class Grid:
@@ -41,11 +41,10 @@ class Grid:
 			x_loc += x_tile_gap
 
 	def draw(self):
-		self.batches["grass0"].draw()
-		self.batches["dirt0"].draw()
-		self.batches["pond0"].draw()
-		self.batches["tree0"].draw()
-		self.batches["tomatoplant0"].draw()
+		assets_by_layer = self.atlas.get_assets_by_layer()
+		for asset in assets_by_layer:
+			asset_name = asset[0]
+			self.batches[asset_name].draw()
 
 				
 
