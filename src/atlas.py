@@ -29,9 +29,10 @@ class Atlas:
 		asset_layer = self.assets[asset_name]["layer"]
 		asset_sprite = pyglet.sprite.Sprite(asset_img.get_region(x=asset_x, y=asset_y, width=asset_width, height=asset_height),batch=batch_)
 		asset_sprite.scale = asset_scale
-		
+
 		asset = {
 			"image": asset_sprite,
+			"name": asset_name,
 			"x": asset_x,
 			"y": asset_y,
 			"width": asset_sprite.width,

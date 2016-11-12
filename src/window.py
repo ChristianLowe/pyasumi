@@ -1,5 +1,6 @@
 import pyglet
 from pyglet.gl import *
+from pyglet.window import key
 
 # Zooming constants
 ZOOM_IN_FACTOR = 1.2
@@ -84,6 +85,9 @@ class Window(pyglet.window.Window):
             self.bottom = mouse_y_in_world - mouse_y*self.zoomed_height
             self.top    = mouse_y_in_world + (1 - mouse_y)*self.zoomed_height
 
+    def on_key_press(self, symbol, modifiers):
+        self.scene.key_pressed(symbol)
+
     def on_draw(self):
         # Initialize Projection matrix
         glMatrixMode( GL_PROJECTION )
@@ -107,7 +111,7 @@ class Window(pyglet.window.Window):
         glPopMatrix()
 
         # David hud stuff
-        
+
         glPushMatrix()
         glViewport(0, 0, self.width, self.height)
         glMatrixMode(GL_PROJECTION)
