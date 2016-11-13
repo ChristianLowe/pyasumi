@@ -49,9 +49,7 @@ class Grid:
 		print("selected tile: ({},{},{})".format(self.selected_x, self.selected_y, self.tiles[self.selected_x][self.selected_y].get_image_descriptions()))
 
 	def move_selected_tile_up(self):
-		self.tiles[self.selected_x][self.selected_y].deselect()
 		self.selected_y += 1
-		self.tiles[self.selected_x][self.selected_y].select()
 
 	def move_selected_tile_left(self):
 		self.selected_x -= 1

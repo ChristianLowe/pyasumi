@@ -71,17 +71,9 @@ class Tile:
 
 	def deselect(self):
 		self.selected = False
-		for tile_image in self.tile_images:
-			tile_image.image = tile_image.actual_image
 
 	def select(self):
 		self.selected = True
-
-		for tile_image in self.tile_images:
-			tile_image.set_selected_image(pyglet.sprite.Sprite(pyglet.image.load('../images/blue-square.png')))
-			tile_image.draw()
-
-
 
 	# Draw all images in the tiles images list.
 	# i.e. A tile could have a ground image, a grass image, and a flower image layered.
