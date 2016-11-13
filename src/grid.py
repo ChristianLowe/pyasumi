@@ -40,8 +40,10 @@ class Grid:
 					do_draw = bitmap[row][col]
 					if do_draw == 1:
 						asset = self.atlas.get_asset(bm_key, self.batches[bm_key])
+
 						self.tiles[row][col].set_xy(x_loc, y_loc)
 						self.tiles[row][col].add_image(asset["image"],asset["name"],asset["layer"])
+
 				y_loc += y_tile_gap
 			x_loc += x_tile_gap
 
@@ -49,21 +51,32 @@ class Grid:
 		print("selected tile: ({},{},{})".format(self.selected_x, self.selected_y, self.tiles[self.selected_x][self.selected_y].get_image_descriptions()))
 
 	def move_selected_tile_up(self):
+		self.tiles[self.selected_x][self.selected_y].deselect()
 		self.selected_y += 1
+		self.tiles[self.selected_x][self.selected_y].select()
 
 	def move_selected_tile_left(self):
+		self.tiles[self.selected_x][self.selected_y].deselect()
 		self.selected_x -= 1
+		self.tiles[self.selected_x][self.selected_y].select()
 
 	def move_selected_tile_right(self):
+		self.tiles[self.selected_x][self.selected_y].deselect()
 		self.selected_x += 1
+		self.tiles[self.selected_x][self.selected_y].select()
 
 	def move_selected_tile_down(self):
+		self.tiles[self.selected_x][self.selected_y].deselect()
 		self.selected_y -= 1
+		self.tiles[self.selected_x][self.selected_y].select()
 
 	# Grid's draw method doesn't call tile's draw method.
 	# For optimization purposes, it uses batches that hold the tile's images.
 	# @TODO: Create 2 draw methods that can do either one of those options.
 	def draw(self):
+		# Draw rectangle around selected tile.
+		s_tile = self.tiles[self.selected_x][self.selected_y]
+		#pyglet.graphics.draw(2, pyglet.gl.GL_LINES, ('v2i', (s_tile.x, s_tile.y, s_tile.image.width, s_tile.image.height)))
 		assets_by_layer = self.atlas.get_assets_by_layer()
 		for asset in assets_by_layer:
 			asset_name = asset[0]
