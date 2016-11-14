@@ -41,14 +41,14 @@ class TileImage:
 	def get_image(self):
 		return self.image
 
-	def draw(self):
-		self.image.draw()
-
 class Tile:
-	def __init__(self, x_index, y_index):
+	def __init__(self, x_index, y_index, width, height):
 		self.tile_images = []
 
 		self.selected = False
+
+		self.width = width
+		self.height = height
 
 		# Indices used for grid locations.
 		# These are NOT the tile's image x,y locations.
@@ -74,13 +74,3 @@ class Tile:
 
 	def select(self):
 		self.selected = True
-
-	# Draw all images in the tiles images list.
-	# i.e. A tile could have a ground image, a grass image, and a flower image layered.
-	def draw(self):
-		# Make dictionary with tile images. Make sure tile images are properly layered.
-		tile_image_layers = {ti.layer:ti.image for ti in self.tile_images}
-		sorted_ti_layers = sorted(tile_image_layers.items(), key=operator.itemgetter(0))
-		for layer in sorted_ti_layers:
-			image = layer[1]
-			image.draw()

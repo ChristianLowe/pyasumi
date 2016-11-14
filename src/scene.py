@@ -27,19 +27,15 @@ class Scene:
 	def key_pressed(self, symbol):
 		if symbol == key.UP:
 			self.grid.move_selected_tile_up()
-			self.grid.get_selected_tile()
 
 		if symbol == key.DOWN:
 			self.grid.move_selected_tile_down()
-			self.grid.get_selected_tile()
 
 		if symbol == key.LEFT:
 			self.grid.move_selected_tile_left()
-			self.grid.get_selected_tile()
 
 		if symbol == key.RIGHT:
 			self.grid.move_selected_tile_right()
-			self.grid.get_selected_tile()
 
 	def print_selected_tile(self):
 		self.grid.get_selected_tile()
